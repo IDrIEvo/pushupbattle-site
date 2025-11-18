@@ -1,0 +1,10 @@
+{
+          "applinks": {
+            "details": [
+              {
+                "appID": "2TUP575LA2.com.marvinjuth.pushupbattle",
+                "paths": [ "/challenge/*", "/app/*", "/app" ]
+              }
+            ]
+          }
+        }
