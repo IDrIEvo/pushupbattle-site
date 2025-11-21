@@ -37,10 +37,15 @@
       p { margin: 0.4em 0; }
       a { color: var(--link); }
       .muted { color: var(--muted); font-size: 0.95rem; }
-      .theme-toggle {
+      .controls {
         position: fixed;
         top: 16px;
         right: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .control-button {
         padding: 10px 14px;
         background: var(--bg);
         color: var(--text);
@@ -51,43 +56,129 @@
         transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
         box-shadow: var(--shadow);
       }
+      @media (min-width: 640px) {
+        .controls { flex-direction: row; }
+      }
     </style>
   </head>
   <body>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Darstellung wechseln">Dunkel</button>
-    <h1>Datenschutzerklärung – Push Up Battle</h1>
+    <div class="controls" role="group" aria-label="Anzeigeoptionen" data-i18n="controlsLabel" data-i18n-attr="aria-label">
+      <button id="theme-toggle" class="control-button" type="button" aria-label="Darstellung wechseln">Dunkel</button>
+      <button id="lang-toggle" class="control-button" type="button" aria-label="Sprache wechseln">English</button>
+    </div>
+    <h1 data-i18n="heading">Datenschutzerklärung – Push Up Battle</h1>
     <ul class="policy">
-      <li><strong>Verantwortliche Stelle:</strong> Marvin Juth, <a href="mailto:marvin.juth@icloud.com">marvin.juth@icloud.com</a>, Anschrift laut Impressum.</li>
-      <li><strong>Verarbeitete Daten:</strong> frei gewählter Name, interne Benutzerkennung (Challenge-/Teilnahme-Code), Push-up-Einträge inkl. Streaks/Ziele/Diagrammwerte, Nutzungsdaten (Zeitpunkte von Einträgen, Widget- und Reminder-Aktionen). Keine Kontakte, Standort-, Finanz- oder Werbedaten.</li>
-      <li><strong>Zwecke:</strong> Bereitstellung und Synchronisation der App-Funktionen (Tracking, Rangliste, Widgets, Erinnerungen, Sharing), Stabilität und Fehleranalyse; keinerlei Werbung oder Tracking.</li>
-      <li><strong>Speicherung:</strong> lokal auf dem Gerät und optional im privaten iCloud-/App-Group-Container. Namen und Fitnessdaten sind nur innerhalb der selbst gewählten Challenge-Gruppe sichtbar. Keine Weitergabe an Dritte oder Datenbroker.</li>
-      <li><strong>Rechtsgrundlagen:</strong> Art. 6 Abs. 1 lit. b DSGVO (Nutzung der App), Art. 6 Abs. 1 lit. a (Push-Benachrichtigungen, CloudKit-Sync), Art. 6 Abs. 1 lit. f (Betrieb/Stabilität). Einwilligungen lassen sich über iOS-/App-Einstellungen oder Löschen der App widerrufen.</li>
-      <li><strong>Rechte:</strong> Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch sowie Beschwerde bei der Aufsichtsbehörde; Kontakt per E-Mail. Wir beantworten Anfragen binnen 30 Tagen.</li>
-      <li><strong>Sicherheit:</strong> Zugriffsschutz durch iOS-Sandbox, TLS-gesicherte iCloud-Kommunikation, App-Group-Isolation. Keine Verarbeitung außerhalb des Apple-Ökosystems.</li>
-      <li><strong>Kinder:</strong> App ist laut Apple ab 4+ freigegeben; bei Nutzung durch Minderjährige liegt die Verantwortung bei den Erziehungsberechtigten, die jederzeit Datenlöschung anfordern können.</li>
-      <li><strong>Aktualisierung:</strong> Änderungen der Datenschutzerklärung werden ausschließlich unter dieser URL veröffentlicht; maßgeblich ist stets die neueste Version.</li>
+      <li data-i18n="responsible"><strong>Verantwortliche Stelle:</strong> Marvin Juth, <a href="mailto:marvin.juth@icloud.com">marvin.juth@icloud.com</a>, Anschrift laut Impressum.</li>
+      <li data-i18n="data"><strong>Verarbeitete Daten:</strong> frei gewählter Name, interne Benutzerkennung (Challenge-/Teilnahme-Code), Push-up-Einträge inkl. Streaks/Ziele/Diagrammwerte, Nutzungsdaten (Zeitpunkte von Einträgen, Widget- und Reminder-Aktionen). Keine Kontakte, Standort-, Finanz- oder Werbedaten.</li>
+      <li data-i18n="purposes"><strong>Zwecke:</strong> Bereitstellung und Synchronisation der App-Funktionen (Tracking, Rangliste, Widgets, Erinnerungen, Sharing), Stabilität und Fehleranalyse; keinerlei Werbung oder Tracking.</li>
+      <li data-i18n="storage"><strong>Speicherung:</strong> lokal auf dem Gerät und optional im privaten iCloud-/App-Group-Container. Namen und Fitnessdaten sind nur innerhalb der selbst gewählten Challenge-Gruppe sichtbar. Keine Weitergabe an Dritte oder Datenbroker.</li>
+      <li data-i18n="legal"><strong>Rechtsgrundlagen:</strong> Art. 6 Abs. 1 lit. b DSGVO (Nutzung der App), Art. 6 Abs. 1 lit. a (Push-Benachrichtigungen, CloudKit-Sync), Art. 6 Abs. 1 lit. f (Betrieb/Stabilität). Einwilligungen lassen sich über iOS-/App-Einstellungen oder Löschen der App widerrufen.</li>
+      <li data-i18n="rights"><strong>Rechte:</strong> Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch sowie Beschwerde bei der Aufsichtsbehörde; Kontakt per E-Mail. Wir beantworten Anfragen binnen 30 Tagen.</li>
+      <li data-i18n="security"><strong>Sicherheit:</strong> Zugriffsschutz durch iOS-Sandbox, TLS-gesicherte iCloud-Kommunikation, App-Group-Isolation. Keine Verarbeitung außerhalb des Apple-Ökosystems.</li>
+      <li data-i18n="children"><strong>Kinder:</strong> App ist laut Apple ab 4+ freigegeben; bei Nutzung durch Minderjährige liegt die Verantwortung bei den Erziehungsberechtigten, die jederzeit Datenlöschung anfordern können.</li>
+      <li data-i18n="updates"><strong>Aktualisierung:</strong> Änderungen der Datenschutzerklärung werden ausschließlich unter dieser URL veröffentlicht; maßgeblich ist stets die neueste Version.</li>
     </ul>
-    <p class="muted">Stand: November 2025</p>
+    <p class="muted" data-i18n="updated">Stand: November 2025</p>
     <script>
       (function () {
-        const toggle = document.getElementById('theme-toggle');
+        const themeToggle = document.getElementById('theme-toggle');
+        const langToggle = document.getElementById('lang-toggle');
+        const i18nElements = document.querySelectorAll('[data-i18n]');
         const storageKey = 'pub-theme';
+        const languageKey = 'pub-lang';
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        const themeButtonLabels = {
+          de: { light: 'Dunkel', dark: 'Hell' },
+          en: { light: 'Dark', dark: 'Light' }
+        };
+        const translations = {
+          de: {
+            documentTitle: 'Datenschutz – Push Up Battle',
+            heading: 'Datenschutzerklärung – Push Up Battle',
+            responsible: '<strong>Verantwortliche Stelle:</strong> Marvin Juth, <a href="mailto:marvin.juth@icloud.com">marvin.juth@icloud.com</a>, Anschrift laut Impressum.',
+            data: '<strong>Verarbeitete Daten:</strong> frei gewählter Name, interne Benutzerkennung (Challenge-/Teilnahme-Code), Push-up-Einträge inkl. Streaks/Ziele/Diagrammwerte, Nutzungsdaten (Zeitpunkte von Einträgen, Widget- und Reminder-Aktionen). Keine Kontakte, Standort-, Finanz- oder Werbedaten.',
+            purposes: '<strong>Zwecke:</strong> Bereitstellung und Synchronisation der App-Funktionen (Tracking, Rangliste, Widgets, Erinnerungen, Sharing), Stabilität und Fehleranalyse; keinerlei Werbung oder Tracking.',
+            storage: '<strong>Speicherung:</strong> lokal auf dem Gerät und optional im privaten iCloud-/App-Group-Container. Namen und Fitnessdaten sind nur innerhalb der selbst gewählten Challenge-Gruppe sichtbar. Keine Weitergabe an Dritte oder Datenbroker.',
+            legal: '<strong>Rechtsgrundlagen:</strong> Art. 6 Abs. 1 lit. b DSGVO (Nutzung der App), Art. 6 Abs. 1 lit. a (Push-Benachrichtigungen, CloudKit-Sync), Art. 6 Abs. 1 lit. f (Betrieb/Stabilität). Einwilligungen lassen sich über iOS-/App-Einstellungen oder Löschen der App widerrufen.',
+            rights: '<strong>Rechte:</strong> Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit, Widerspruch sowie Beschwerde bei der Aufsichtsbehörde; Kontakt per E-Mail. Wir beantworten Anfragen binnen 30 Tagen.',
+            security: '<strong>Sicherheit:</strong> Zugriffsschutz durch iOS-Sandbox, TLS-gesicherte iCloud-Kommunikation, App-Group-Isolation. Keine Verarbeitung außerhalb des Apple-Ökosystems.',
+            children: '<strong>Kinder:</strong> App ist laut Apple ab 4+ freigegeben; bei Nutzung durch Minderjährige liegt die Verantwortung bei den Erziehungsberechtigten, die jederzeit Datenlöschung anfordern können.',
+            updates: '<strong>Aktualisierung:</strong> Änderungen der Datenschutzerklärung werden ausschließlich unter dieser URL veröffentlicht; maßgeblich ist stets die neueste Version.',
+            updated: 'Stand: November 2025',
+            controlsLabel: 'Anzeigeoptionen',
+            themeToggleLabel: 'Darstellung wechseln',
+            langToggleLabel: 'Sprache wechseln'
+          },
+          en: {
+            documentTitle: 'Privacy – Push Up Battle',
+            heading: 'Privacy Policy – Push Up Battle',
+            responsible: '<strong>Data controller:</strong> Marvin Juth, <a href="mailto:marvin.juth@icloud.com">marvin.juth@icloud.com</a>, postal address as stated in the legal notice.',
+            data: '<strong>Data we process:</strong> freely chosen name, internal user identifier (challenge/invite code), push-up entries including streaks, goals and chart values, usage data such as entry timestamps plus widget and reminder actions. No contacts, location, financial or advertising data.',
+            purposes: '<strong>Purposes:</strong> providing and syncing app features (tracking, leaderboards, widgets, reminders, sharing) as well as stability and crash analysis; absolutely no advertising or tracking.',
+            storage: '<strong>Storage:</strong> locally on your device and optionally inside your private iCloud/App Group container. Names and fitness data are only visible within the challenge group you joined yourself. No transfer to third parties or data brokers.',
+            legal: '<strong>Legal bases:</strong> Art. 6 (1) b GDPR (app usage), Art. 6 (1) a (push notifications, CloudKit sync), Art. 6 (1) f (operation/stability). You can withdraw consent via iOS/app settings or by deleting the app.',
+            rights: '<strong>Your rights:</strong> access, rectification, deletion, restriction, data portability, objection, plus complaints to the supervisory authority; contact us via email. We respond to requests within 30 days.',
+            security: '<strong>Security:</strong> iOS sandbox protection, TLS-encrypted iCloud communication, App Group isolation. No processing outside the Apple ecosystem.',
+            children: '<strong>Children:</strong> The app is rated 4+ on the App Store; parents/guardians remain responsible for underage users and can request deletion at any time.',
+            updates: '<strong>Updates:</strong> Changes to this privacy notice will only be published at this URL; the latest version always applies.',
+            updated: 'Last updated: November 2025',
+            controlsLabel: 'Display options',
+            themeToggleLabel: 'Switch appearance',
+            langToggleLabel: 'Switch language'
+          }
+        };
+        let currentTheme;
+        let currentLanguage;
 
         const setTheme = (theme) => {
+          currentTheme = theme;
           document.body.classList.toggle('dark', theme === 'dark');
           document.documentElement.style.colorScheme = theme === 'dark' ? 'dark' : 'light';
-          toggle.textContent = theme === 'dark' ? 'Hell' : 'Dunkel';
+          const labelSet = themeButtonLabels[currentLanguage];
+          if (labelSet) {
+            themeToggle.textContent = theme === 'dark' ? labelSet.dark : labelSet.light;
+          }
+        };
+
+        const applyLanguage = (language) => {
+          currentLanguage = language;
+          const dict = translations[language];
+          document.title = dict.documentTitle;
+          document.documentElement.lang = language;
+          langToggle.textContent = language === 'de' ? 'English' : 'Deutsch';
+          langToggle.setAttribute('aria-label', dict.langToggleLabel);
+          themeToggle.setAttribute('aria-label', dict.themeToggleLabel);
+          i18nElements.forEach((element) => {
+            const key = element.dataset.i18n;
+            const value = dict[key];
+            if (!value) return;
+            if (element.dataset.i18nAttr) {
+              element.setAttribute(element.dataset.i18nAttr, value);
+            } else {
+              element.innerHTML = value;
+            }
+          });
+          setTheme(currentTheme);
         };
 
         const savedTheme = localStorage.getItem(storageKey);
         const initialTheme = savedTheme || (prefersDark.matches ? 'dark' : 'light');
-        setTheme(initialTheme);
+        currentTheme = initialTheme;
 
-        toggle.addEventListener('click', () => {
+        const savedLanguage = localStorage.getItem(languageKey);
+        const initialLanguage = savedLanguage === 'en' ? 'en' : 'de';
+        applyLanguage(initialLanguage);
+
+        themeToggle.addEventListener('click', () => {
           const nextTheme = document.body.classList.contains('dark') ? 'light' : 'dark';
           setTheme(nextTheme);
           localStorage.setItem(storageKey, nextTheme);
+        });
+
+        langToggle.addEventListener('click', () => {
+          const nextLanguage = currentLanguage === 'de' ? 'en' : 'de';
+          applyLanguage(nextLanguage);
+          localStorage.setItem(languageKey, nextLanguage);
         });
 
         prefersDark.addEventListener('change', (event) => {
